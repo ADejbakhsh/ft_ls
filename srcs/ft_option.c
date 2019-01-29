@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_option_r.c                                      :+:      :+:    :+:   */
+/*   ft_option.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 13:12:12 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/28 10:17:52 by adejbakh         ###   ########.fr       */
+/*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
+/*   Updated: 2019/01/29 17:17:07 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,10 @@ static void	ft_open_default(char *str, int tab[])
 	if (p == NULL)
 		return ;
 	p = ft_sort_hub(p, tab);
-	ft_option_r(p, str, tab);
+	ft_option(p, str, tab);
 }
 
-static int	ft_nb_argv_is_two(int argc, char **argv)
-{
-	int	a;
-
-	a = 0;
-	while (--argc > 0)
-		if (argv[argc][0] != '\0')
-			a++;
-	if (a == 1)
-		return (0);
-	return (1);
-}
-
-int			ft_start_option_r(int argc, char **argv, int tab[])
+int			ft_start_option(int argc, char **argv, int tab[])
 {
 	int		a;
 	int		b;
@@ -62,53 +49,30 @@ int			ft_start_option_r(int argc, char **argv, int tab[])
 	return (0);
 }
 
-static int	ft_nodouble(char *str, char *mode, int tab)
+int		ft_print_hub(t_info *p, int a, int l)
 {
-	int	a;
-
-	if (mode[0] != 'd')
+	if (p == NULL)
 		return (0);
-	if (mode[1] != 'r')
+	if (l == 1)
+		return (ft_print_l(p, a));
+	if (a == 0 && p->name[0] == '.')
 	{
-		ft_putin(3, "ls: ", str, ": Permission denied\n");
+		ft_print_hub(p->next, a, l);
 		return (0);
 	}
-	a = ft_strlen(str);
-	if (str[a - 1] == '.' && str[a - 2] == '/')
-		return (0);
-	if (str[a - 1] == '.' && str[a - 2] == '.' && str[a - 3] == '/')
-		return (0);
-	if (tab == 0)
-	{
-		while (str[a] != '/')
-			--a;
-		if (str[a + 1] == '.')
-			return (0);
-	}
-	return (1);
+	ft_putin(2, p->name, "\n");
+	return (ft_print_hub(p->next, a, l));
 }
 
-int			ft_option_r(t_info *p, char *str, int tab[])
+int			ft_option(t_info *p, char *str, int tab[])
 {
 	t_info	*s;
-	char	*t;
 
-	if (!(p))
-		return (0);
 	s = p;
-	ft_print_notl(s, tab[1]);
+	ft_print_hub(s, tab[1], tab[3]);
 	write(1, "\n", 1);
-	while (p)
-	{
-		t = ft_naming(str, p->name);
-		if (ft_nodouble(t, p->mode, tab[1]) != 0)
-		{
-			ft_putin(2, t, ":\n");
-			ft_option_r(ft_sort_hub(ft_opendir(t), tab), t, tab);
-		}
-		ft_strdel(&t);
-		p = p->next;
-	}
+	if (tab[4] == 1)
+		ft_recursive(p, str, tab);
 	ft_free_struc(s);
 	return (0);
 }

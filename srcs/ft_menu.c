@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/26 15:30:07 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/01/29 12:13:50 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,5 @@ int			ft_menu(int argc, char **argv)
 		ft_bzero(argv[a], ft_strlen(argv[a]));
 		++a;
 	}
-	if (tab[4] == 1)
-		return (ft_start_option_r(argc, argv, tab));
-	return (argc);
+	return (ft_start_option(argc, argv, tab));
 }

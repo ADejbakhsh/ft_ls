@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:37:09 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/26 16:53:15 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/01/29 11:06:02 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,4 @@ struct s_info	*ft_opendir(char *str)
 		return (NULL);
 	direntp = readdir(dirp);
 	return (ft_auto_open_dir(dirp, direntp, str));
-}
-
-void	ft_print_notl(t_info *p, int a)
-{
-	if (p == NULL)
-		return ;
-	if (a == 0 && p->name[0] == '.')
-	{
-		ft_print_notl(p->next, a);
-		return ;
-	}
-/*	ft_putin(1, p->mode);
-	ft_putin(2, "\t", p->nbl);
-	ft_putin(2, "\t", p->time);
-	ft_putin(2, "\t", p->size);
-	ft_putin(2, "\t", p->owner);
-*/	ft_putin(3, "\t", p->name, "\t");
-	ft_putstr("\n");
-	ft_print_notl(p->next, a);
 }
