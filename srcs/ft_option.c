@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 17:17:07 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:02:57 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int			ft_start_option(int argc, char **argv, int tab[])
 		{
 			if (c == 1)
 				ft_putin(2, argv[a], ":\n");
-			ft_open_default(argv[a], tab);
+				ft_open_default(argv[a], tab);
+				if (argc > 1)
+					write(1, "\n", 1);
 			b = 1;
 		}
 		a++;

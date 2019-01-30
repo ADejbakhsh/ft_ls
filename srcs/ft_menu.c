@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 12:13:50 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:19:59 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			ft_menu(int argc, char **argv)
 		{
 			ft_putstr("ls : illegal option -- ");
 			ft_putchar(ft_dif(argv[a], "lratR"));
-			ft_putstr("\n");
+			write(1, "\n", 1);
 			ft_putendl("usage : ls [-lratR] [file ...]");
 			return (0);
 		}

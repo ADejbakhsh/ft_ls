@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:32:06 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 15:10:18 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:20:06 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_security_input(int argc,char **argv)
 
 int			main(int argc, char **argv)
 {
-	ft_security_input(argc, argv);
+	ft_security_input(argc, argv); /* pas de message si  */
 	if (argc == 1)
 		return (ft_prints(ft_opendir("."), 1));
 	if (argv[1][0] == '-' && ft_strlen(argv[1]) != 1)
