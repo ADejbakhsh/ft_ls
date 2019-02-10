@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_argv.c                                     :+:      :+:    :+:   */
+/*   argv_without_option.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 13:46:46 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/10 21:25:12 by adejbakh         ###   ########.fr       */
+/*   Created: 2019/02/09 17:42:40 by adejbakh          #+#    #+#             */
+/*   Updated: 2019/02/09 17:57:40 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_sort_argv(char **argv)
+char	**argv_without_option(int argc, char **argv)
 {
-	char	*tmp;
-	int		a;
+	int	i;
 
-	a = 0;
-	while (argv[a + 1])
-	{
-		if (ft_strcmp(argv[a], argv[a + 1]) > 0)
-		{
-			tmp = argv[a];
-			argv[a] = argv[a + 1];
-			argv[a + 1] = tmp;
-			a = -1;
-		}
-		++a;
-	}
-	return (argv);
+	i = 1;
+	while (argv[i] && argv[i][0] == '-')
+		i++;
+	if (!(argv[i]))
+		return (NULL);
+	return (argv_to_tab(argc, argv, i));
 }

@@ -6,7 +6,7 @@
 #    By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/15 12:10:02 by adejbakh          #+#    #+#              #
-#    Updated: 2019/01/24 13:52:31 by adejbakh         ###   ########.fr        #
+#    Updated: 2019/02/09 17:46:27 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,8 @@ FUNC =  ft_atoi.c\
   ft_cut_before_last_cara.c\
   ft_int_tab.c\
   ft_sort_argv.c\
+  argv_to_tab.c\
+  argv_without_option.c\
 
 SRC_DIR = srcs/
 

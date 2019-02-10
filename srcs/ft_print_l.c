@@ -6,13 +6,13 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/30 17:04:07 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 22:24:39 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	ft_padding(t_info *p, int pad[])
+static void	ft_padding(t_info *p, int pad[], int a)
 {
 	t_info	*s;
 	int		tmp;
@@ -38,9 +38,12 @@ static void	ft_padding(t_info *p, int pad[])
 		block += s->block;
 		s = s->next;
 	}
-	ft_putstr("total ");
-	ft_putnbr(block);
-	write(1, "\n", 1);
+	if (a != -1)
+	{
+		ft_putstr("total ");
+		ft_putnbr(block);
+		write(1, "\n", 1);
+	}
 }
 
 static void	ft_space(int a, int b)
@@ -74,13 +77,11 @@ static int	ft_device(t_info *p, int pad[])
 	return (0);
 }
 
-#include <stdio.h>
-
 int			ft_print_l(t_info *p, int a)
 {
 	int	pad[6];
 
-	ft_padding(p, pad);
+	ft_padding(p, pad, a);
 	while (p)
 	{
 		while (p && a == 0 && p->name[0] == '.')
@@ -102,5 +103,7 @@ int			ft_print_l(t_info *p, int a)
 			write(1, "\n", 1);
 		p = p->next;
 	}
+	if (a == -1)
+		write(1, "\n", 1);
 	return (0);
 }

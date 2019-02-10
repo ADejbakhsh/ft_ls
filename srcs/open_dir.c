@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:37:09 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 11:06:02 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 23:19:38 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ t_info	*ft_auto_open_dir(DIR *dirp, struct dirent *direntp, char *str)
 	t_info	*start;
 
 	t = ft_naming(str, direntp->d_name);
-	p = ft_inspect_file(t);
+	if (!(p = ft_inspect_file(t)))
+		return (NULL);
 	start = p;
 	ft_strdel(&t);
 	while ((direntp = readdir(dirp)) != NULL)
 	{
 		t = ft_naming(str, direntp->d_name);
-		p->next = ft_inspect_file(t);
+		if (!(p->next = ft_inspect_file(t)))
+			return (NULL);
 		ft_strdel(&t);
 		p = p->next;
 	}

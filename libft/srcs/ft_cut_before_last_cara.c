@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 12:52:13 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/24 12:29:44 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 20:58:02 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_cut_before_last_cara(char *str, char cara)
 	i = ft_strlen(str);
 	while (i > 0 && str[i] != cara)
 		i--;
-	if (str[i] == '\0')
-		return ("ft_cut_before_last_cara: pas le cara dans la string");
+	if (i == 0)
+		return (ft_strdup(str));
 	a = ft_strlen(str + i++);
 	if (!(nstr = (char*)malloc(sizeof(*nstr) * a + 1)))
 		return ("ft_cut_before_last_cara: malloc error");

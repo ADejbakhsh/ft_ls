@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+         #
+#    By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/15 12:10:02 by adejbakh          #+#    #+#              #
-#    Updated: 2019/01/29 17:21:19 by adejbakh         ###   ########.fr        #
+#    Created: 2019/02/09 17:00:04 by adejbakh          #+#    #+#              #
+#    Updated: 2019/02/09 17:00:19 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 FUNC = ft_menu.c \
     ft_option.c\
@@ -21,7 +22,8 @@ FUNC = ft_menu.c \
     inspect_file.c\
     main.c\
     open_dir.c\
- 
+    not_a_dir.c\
+
 SRC_DIR = ./srcs/
 
 SRC = $(addprefix $(SRC_DIR), $(FUNC))
@@ -32,7 +34,7 @@ NAME = ft_ls
 
 INCLUDES = ./includes/
 
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -g
 
 CC = gcc
 

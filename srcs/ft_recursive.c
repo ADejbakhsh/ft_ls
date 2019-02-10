@@ -6,23 +6,20 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:02:35 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 11:02:40 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 23:40:24 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_nb_argv_is_two(int argc, char **argv)
+int		ft_nb_argv_is_two(char **argv)
 {
 	int	a;
 
 	a = 0;
-	while (--argc > 0)
-		if (argv[argc][0] != '\0')
-			a++;
-	if (a == 1)
-		return (0);
-	return (1);
+	while (argv[a])
+		a++;
+	return (a);
 }
 
 static int	ft_nodouble(char *str, char *mode, int tab)
@@ -53,7 +50,8 @@ static int	ft_nodouble(char *str, char *mode, int tab)
 
 int		ft_recursive(t_info *p, char *str, int tab[])
 {
-	char *t;
+	t_info	*s;
+	char	*t;
 
 	while (p)
 	{
@@ -61,7 +59,11 @@ int		ft_recursive(t_info *p, char *str, int tab[])
 		if (ft_nodouble(t, p->mode, tab[1]) != 0)
 		{
 			ft_putin(2, t, ":\n");
-			ft_option(ft_sort_hub(ft_opendir(t), tab), t, tab);
+			s = ft_opendir(t);
+			if (!s)
+				ft_putstr_fd(strerror(errno), 2);
+			else
+				ft_option(ft_sort_hub(s, tab), t, tab);
 		}
 		ft_strdel(&t);
 		p = p->next;

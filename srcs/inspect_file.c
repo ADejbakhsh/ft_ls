@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 17:16:59 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 21:08:48 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,11 @@ struct s_info			*ft_inspect_file(char *str)
 	struct passwd	*pwd;
 	struct group	*grp;
 
+	if (lstat(str, &buf) == -1)
+		return (NULL);
 	p = (t_info*)malloc(sizeof(*p));
 	if (!(p->mode = ft_strnew(11)))
-		return (0);
-	lstat(str, &buf);
+		return (NULL);
 	p->mode = ft_strmode(buf.st_mode, p->mode, str);
 	if (!(p = ft_sec_stat(&p, buf)))
 		return (NULL);
@@ -85,6 +86,7 @@ struct s_info			*ft_inspect_file(char *str)
 		return (NULL);
 	readlink(str, p->link, 400);
 	p->block = buf.st_blocks;
+	p->next = NULL;
 	return (p);
 }
 

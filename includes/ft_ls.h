@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/29 17:17:01 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 20:51:19 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,19 @@ int				ft_menu(int argc, char **argv);
 int				ft_puttime(char *str, size_t  b);
 int				ft_option(t_info *p, char *str, int tab[]);
 int				ft_recursive(t_info *p, char *str, int tab[]);
-int				ft_start_option(int argc, char **argv, int tab[]);
-int				ft_nb_argv_is_two(int argc, char **argv);
+int				ft_start_option(char **argv, int tab[]);
+int				ft_nb_argv_is_two(char **argv);
 int				ft_prints(t_info *p, int a);
 int				ft_print_l(t_info *p, int a);
+char			**ft_open_not_dir(char **argv, int tab[]);
+int				ft_is_not_a_dir(char *str);
 int				ft_security_input(int argc, char **argv);
 int				ft_print_hub(t_info *p, int a, int l);
 char			*ft_naming(char *s1, char *s2);
 char			*ft_strmode(int mode, char *str, char *init);
 void			ft_swap(t_info *a, t_info *b);
 void			ft_default(int argc, char **argv);
+void			not_dir_option(char *str, int tab[]);
+void			ft_free_tab(char **argv);
 
 #endif

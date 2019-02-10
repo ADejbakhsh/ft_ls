@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:32:06 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/10 22:04:37 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/10 21:34:35 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,6 @@ int	ft_security_input(int argc,char **argv)
 	return (1);
 }
 
-void		ft_default(int argc, char **argv)
-{
-	t_info	*p;
-	int		i;
-
-	i = 0;
-	while (argv[++i])
-	{
-		ft_putendl(argv[i]);
-		if ((p = ft_opendir(argv[i])))
-		{
-			if (argc > 2)
-				ft_putin(2, argv[i], ":\n");
-			ft_prints(ft_opendir(argv[i]), 1);
-			if (i + 1 != argc)
-				ft_putstr("\n");
-			ft_free_struc(p);
-		}
-	}
-}
-
 int			main(int argc, char **argv)
 {
 	ft_security_input(argc, argv);
@@ -90,6 +69,7 @@ int			main(int argc, char **argv)
 		return (ft_prints(ft_opendir("."), 1));
 	if (argv[1][0] == '-' && ft_strlen(argv[1]) > 1)
 		return (ft_menu(argc, argv));
-	ft_default(argc, argv);
+	while (*argv++)
+		ft_putendl(*argv);
 	return (0);
 }

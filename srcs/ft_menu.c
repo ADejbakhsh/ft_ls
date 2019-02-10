@@ -6,31 +6,11 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/30 17:19:59 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:00:26 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void		ft_default(int argc, char **argv)
-{
-	t_info	*p;
-	int		i;
-
-	i = 0;
-	while (argv[++i])
-	{
-		if ((p = ft_opendir(argv[i])) != NULL)
-		{
-			if (argc > 2)
-				ft_putin(2, argv[i], ":\n");
-			ft_prints(ft_opendir(argv[i]), 1);
-			if (i + 1 != argc)
-				ft_putstr("\n");
-			ft_free_struc(p);
-		}
-	}
-}
 
 static char	ft_dif(char *s1, char *s2)
 {
@@ -58,8 +38,9 @@ static char	ft_dif(char *s1, char *s2)
 
 int			ft_menu(int argc, char **argv)
 {
-	int	tab[5];
-	int	a;
+	char	**n_avg;
+	int		tab[5];
+	int		a;
 
 	ft_int_tab(tab, 5);
 	a = 1;
@@ -78,8 +59,9 @@ int			ft_menu(int argc, char **argv)
 		tab[2] = (ft_strchr(argv[a], 'r') != 0) ? 1 : tab[2];
 		tab[3] = (ft_strchr(argv[a], 'l') != 0) ? 1 : tab[3];
 		tab[4] = (ft_strchr(argv[a], 'R') != 0) ? 1 : tab[4];
-		ft_bzero(argv[a], ft_strlen(argv[a]));
 		++a;
 	}
-	return (ft_start_option(argc, argv, tab));
+	if (!(n_avg = argv_without_option(argc, argv)))
+			return (0);
+	return (ft_start_option(n_avg, tab));
 }

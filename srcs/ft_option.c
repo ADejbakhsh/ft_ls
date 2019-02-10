@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/30 17:02:57 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 23:14:08 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,25 @@ static void	ft_open_default(char *str, int tab[])
 	ft_option(p, str, tab);
 }
 
-int			ft_start_option(int argc, char **argv, int tab[])
+int			ft_start_option(char **argv, int tab[])
 {
 	int		a;
 	int		b;
 	int		c;
 
+	a = 0;
 	b = 0;
-	a = 1;
-	argv = ft_sort_argv(argv);
-	c = ft_nb_argv_is_two(argc, argv);
-	while (--argc > 0)
+	ft_sort_argv(argv);
+	ft_open_not_dir(argv, tab);
+	c = ft_nb_argv_is_two(argv);
+	while (argv[a])
 	{
 		if (argv[a][0] != 0)
 		{
-			if (c == 1)
+			if (c > 1 && argv[a][0] != 4)
 				ft_putin(2, argv[a], ":\n");
-				ft_open_default(argv[a], tab);
-				if (argc > 1)
+			ft_open_default(argv[a], tab);
+				if (argv[a + 1] != 0 && argv[a + 1][0] != 4)
 					write(1, "\n", 1);
 			b = 1;
 		}
@@ -48,6 +49,7 @@ int			ft_start_option(int argc, char **argv, int tab[])
 	}
 	if (b == 0)
 		ft_open_default(".", tab);
+	ft_free_tab(argv);
 	return (0);
 }
 

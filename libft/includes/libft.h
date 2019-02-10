@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 08:35:20 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/24 13:46:34 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/09 17:44:30 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_list
 }					t_list;
 
 void				ft_putin(int fmt, ...);
+char				**argv_without_option(int argc, char **argv);
+char				**argv_to_tab(int argc, char **argv, int skip);
 int					ft_strdel2(char **s1, char **s2);
 int					ft_str_contain_only(char *str, char *s2);
 int					ft_strcspn(char const *s, char const *charset);
