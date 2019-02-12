@@ -6,13 +6,13 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:02:35 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 23:40:24 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:47:36 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_nb_argv_is_two(char **argv)
+int			ft_nb_argv_is_two(char **argv)
 {
 	int	a;
 
@@ -29,10 +29,7 @@ static int	ft_nodouble(char *str, char *mode, int tab)
 	if (mode[0] != 'd')
 		return (0);
 	if (mode[1] != 'r')
-	{
-		ft_putin(3, "ls: ", str, ": Permission denied\n");
-		return (0);
-	}
+		return (ft_print_error(str));
 	a = ft_strlen(str);
 	if (str[a - 1] == '.' && str[a - 2] == '/')
 		return (0);
@@ -48,7 +45,7 @@ static int	ft_nodouble(char *str, char *mode, int tab)
 	return (1);
 }
 
-int		ft_recursive(t_info *p, char *str, int tab[])
+int			ft_recursive(t_info *p, char *str, int tab[])
 {
 	t_info	*s;
 	char	*t;
@@ -58,12 +55,15 @@ int		ft_recursive(t_info *p, char *str, int tab[])
 		t = ft_naming(str, p->name);
 		if (ft_nodouble(t, p->mode, tab[1]) != 0)
 		{
+			write(1, "\n", 1);
 			ft_putin(2, t, ":\n");
 			s = ft_opendir(t);
 			if (!s)
-				ft_putstr_fd(strerror(errno), 2);
+				ft_print_error(p->name);
 			else
+			{
 				ft_option(ft_sort_hub(s, tab), t, tab);
+			}
 		}
 		ft_strdel(&t);
 		p = p->next;

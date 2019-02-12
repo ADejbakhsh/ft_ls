@@ -6,13 +6,13 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:32:06 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/10 22:04:37 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/13 00:12:35 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			ft_prints(t_info *p, int a)
+int		ft_prints(t_info *p, int a)
 {
 	t_info	*s;
 
@@ -30,60 +30,65 @@ int			ft_prints(t_info *p, int a)
 	return (1);
 }
 
-int	ft_security_input(int argc,char **argv)
+void	ft_secu_all_argv(char **argv, int i)
 {
-	DIR	*dirp;
-	int	i;
-	int	c;
-
-	if (argc == 1)
-		return (0);
-	i = 1;
-	c = 0;
-	while (argv[i] && argv[i][0] == '-' && ft_strlen(argv[i]) > 1)
-		i++;
-	ft_sort_argv(argv + i);
 	while (argv[i])
 	{
-		dirp = opendir(argv[i]);
-		if (dirp == NULL && ft_is_not_a_dir(argv[i]) == 0)
-		{
-			++c;
-			write (2, "ls: ", 4);
-			ft_putstr_fd(argv[i], 2);
-			write (2, ": ", 2);
-			ft_putstr_fd(strerror(errno), 2);
-			ft_putchar('\n');
-		}
-		if (dirp)
-			closedir(dirp);
+		if (ft_is_not_a_dir(argv[i]) == 0)
+			if (ft_print_error(argv[i]) != 0)
+				return ;
 		++i;
 	}
-	return (1);
 }
 
-void		ft_default(int argc, char **argv)
+int		ft_security_input(int argc, char **argv)
+{
+	int	a;
+	int	i;
+
+	a = 1;
+	i = 1;
+	if (argc == 1)
+		return (0);
+	while (argv[i] && argv[i][0] == '-' && ft_strlen(argv[i]) > 1)
+		i++;
+	if (!argv[i])
+		return (-1);
+	while (argv[a])
+		if (ft_strlen(argv[a++]) == 0)
+			return (ft_print_error(argv[a]));
+	ft_sort_argv(argv + i);
+	ft_secu_all_argv(argv, i);
+	return (0);
+}
+
+void	ft_default(int argc, char **argv)
 {
 	t_info	*p;
+	t_info	*s;
 	int		i;
 
 	i = 0;
 	while (argv[++i])
 	{
-		ft_putendl(argv[i]);
-		if ((p = ft_opendir(argv[i])))
+		if ((p = ft_inspect_file(argv[i])))
 		{
-			if (argc > 2)
-				ft_putin(2, argv[i], ":\n");
-			ft_prints(ft_opendir(argv[i]), 1);
-			if (i + 1 != argc)
-				ft_putstr("\n");
+			if ((s = ft_opendir(argv[i])))
+			{
+				if (argc > 2)
+					ft_putin(2, argv[i], ":\n");
+				ft_prints(s, 1);
+				if (i + 1 != argc)
+					ft_putstr("\n");
+			}
+			else
+				ft_putendl(argv[i]);
 			ft_free_struc(p);
 		}
 	}
 }
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	ft_security_input(argc, argv);
 	if (argc == 1)

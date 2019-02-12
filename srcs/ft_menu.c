@@ -6,11 +6,29 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/10 22:00:26 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:37:49 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int			ft_print_error(char *str)
+{
+	write(2, "ls: ", 4);
+	if (!str)
+	{
+		write(2, "fts_open", 8);
+		write(2, ": ", 2);
+		ft_putstr_fd("No such file or directory\n", 2);
+		return (1);
+	}
+	else
+		ft_putstr_fd(str, 2);
+	write(2, ": ", 2);
+	ft_putstr_fd(strerror(errno), 2);
+	write(2, "\n", 2);
+	return (0);
+}
 
 static char	ft_dif(char *s1, char *s2)
 {
@@ -61,7 +79,6 @@ int			ft_menu(int argc, char **argv)
 		tab[4] = (ft_strchr(argv[a], 'R') != 0) ? 1 : tab[4];
 		++a;
 	}
-	if (!(n_avg = argv_without_option(argc, argv)))
-			return (0);
+	n_avg = argv_without_option(argc, argv);
 	return (ft_start_option(n_avg, tab));
 }

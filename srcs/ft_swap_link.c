@@ -6,14 +6,13 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:10:55 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/24 16:13:33 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:46:35 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_ls.h"
 
-static void			ft_swap_more(t_info *a, t_info *b)
+static void		ft_swap_more(t_info *a, t_info *b)
 {
 	long	s;
 	char	*tmp;

@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 22:24:39 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:59:34 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,12 @@ static void	ft_padding(t_info *p, int pad[], int a)
 			pad[3] = tmp;
 		if ((tmp = ft_strlen(s->minor)) > pad[4])
 			pad[4] = tmp;
-		if ((tmp = ft_strlen(s->group)) > pad[5])
+		if ((s->group && (tmp = ft_strlen(s->group))) > pad[5])
 			pad[5] = tmp;
 		block += s->block;
 		s = s->next;
 	}
-	if (a != -1)
-	{
-		ft_putstr("total ");
-		ft_putnbr(block);
-		write(1, "\n", 1);
-	}
-}
-
-static void	ft_space(int a, int b)
-{
-	int	c;
-
-	c = b - a;
-	while (--c >= 0)
-		write(1 , " ", 1);
+	ft_paddind_total_print(a, block);
 }
 
 static int	ft_device(t_info *p, int pad[])
@@ -70,14 +56,28 @@ static int	ft_device(t_info *p, int pad[])
 		}
 		ft_space(ft_strlen(p->size), pad[4]);
 		ft_putin(3, "    ", p->size, " ");
-	return (0);
+		return (0);
 	}
 	ft_space(ft_strlen(p->size), pad[2]);
 	ft_putin(2, p->size, " ");
 	return (0);
 }
 
-int			ft_print_l(t_info *p, int a)
+static void	ft_print_basic(t_info *p, int pad[])
+{
+	ft_putin(2, p->mode, " ");
+	ft_space(ft_strlen(p->nbl), pad[0]);
+	ft_putin(2, p->nbl, " ");
+	ft_putstr(p->owner);
+	ft_space(ft_strlen(p->owner), pad[1]);
+	if (p->group)
+	{
+		ft_putin(2, "  ", p->group);
+		ft_space(ft_strlen(p->group), pad[5]);
+	}
+}
+
+int			ft_print_l(t_info *p, int a, int r)
 {
 	int	pad[6];
 
@@ -87,14 +87,8 @@ int			ft_print_l(t_info *p, int a)
 		while (p && a == 0 && p->name[0] == '.')
 			p = p->next;
 		if (!(p))
-			break;
-		ft_putin(2, p->mode, " ");
-		ft_space(ft_strlen(p->nbl), pad[0]);
-		ft_putin(2, p->nbl, " ");
-		ft_putstr(p->owner);
-		ft_space(ft_strlen(p->owner), pad[1]);
-		ft_putin(2, "  ", p->group);
-		ft_space(ft_strlen(p->group), pad[5]);
+			break ;
+		ft_print_basic(p, pad);
 		ft_device(p, pad);
 		ft_putin(3, p->time, " ", p->name);
 		if (p->link[0] != '\0')
@@ -103,7 +97,7 @@ int			ft_print_l(t_info *p, int a)
 			write(1, "\n", 1);
 		p = p->next;
 	}
-	if (a == -1)
+	if (a == -1 || r == 1)
 		write(1, "\n", 1);
 	return (0);
 }

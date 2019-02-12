@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 21:08:48 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/13 00:10:17 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static struct s_info	*ft_sec_stat(t_info **p, struct stat buf)
 		return (NULL);
 	if (!((*p)->nbl = ft_itoa(buf.st_nlink)))
 		return (NULL);
+	(*p)->next = NULL;
 	return (*p);
 }
 
@@ -69,24 +70,25 @@ struct s_info			*ft_inspect_file(char *str)
 	struct passwd	*pwd;
 	struct group	*grp;
 
-	if (lstat(str, &buf) == -1)
+	if (lstat(str, &buf) == -1 || !(p = (t_info*)malloc(sizeof(*p))))
 		return (NULL);
-	p = (t_info*)malloc(sizeof(*p));
 	if (!(p->mode = ft_strnew(11)))
 		return (NULL);
-	p->mode = ft_strmode(buf.st_mode, p->mode, str);
+	p->mode = ft_strmode(buf.st_mode, p->mode);
 	if (!(p = ft_sec_stat(&p, buf)))
 		return (NULL);
 	pwd = getpwuid(buf.st_uid);
-	p->owner = pwd->pw_name;
-	grp = getgrgid(buf.st_gid);
-	p->group = grp->gr_name;
+	if (pwd)
+		p->owner = pwd->pw_name;
+	if ((grp = getgrgid(buf.st_gid)))
+		p->group = grp->gr_name;
+	else
+		p->group = NULL;
 	p->name = ft_cut_before_last_cara(str, '/');
 	if (!(p->link = ft_strnew(400)))
 		return (NULL);
 	readlink(str, p->link, 400);
 	p->block = buf.st_blocks;
-	p->next = NULL;
 	return (p);
 }
 

@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 20:52:14 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/13 19:50:04 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:23:43 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,6 @@ static	char	ft_strmode_sat(int mode)
 	return ('?');
 }
 
-static	char	ft_exented_attribute(char *init)
-{
-	ssize_t		xattr;
-	acl_entry_t	dummy;
-	acl_t		acl;
-
-	acl = acl_get_link_np(init, ACL_TYPE_EXTENDED);
-	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
-	{
-		acl_free(acl);
-		acl = NULL;
-	}
-	xattr = listxattr(init, NULL, 0, XATTR_NOFOLLOW);
-	if (xattr > 0)
-	{
-		free(acl);
-		return ('@');
-	}
-	if (acl != NULL)
-	{
-		free(acl);
-		return ('+');
-	}
-	return (' ');
-}
-
 static	char	ft_if(int cond, char s1, char s2)
 {
 	if (cond)
@@ -77,7 +51,7 @@ static	char	ft_s_if(int mode, int a, int b)
 	return ('s');
 }
 
-char			*ft_strmode(int mode, char *str, char *init)
+char			*ft_strmode(int mode, char *str)
 {
 	int	a;
 
@@ -94,7 +68,7 @@ char			*ft_strmode(int mode, char *str, char *init)
 	str[a++] = ft_if(S_IROTH & mode, 'r', '-');
 	str[a++] = ft_if(S_IWOTH & mode, 'w', '-');
 	str[a++] = ft_s_if(mode, S_IXOTH, S_ISVTX);
-	str[a++] = ft_exented_attribute(init);
+	str[a++] = ' ';
 	str[a++] = '\0';
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 20:51:19 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/12 23:53:46 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "../libft/includes/libft.h"
 # include <time.h>
 # include <sys/xattr.h>
-# include <sys/acl.h>
 # include <grp.h>
 # define DAY 86400
 # define HOUR 3600
@@ -46,29 +45,32 @@ typedef	struct		s_info
 	struct s_info	*next;
 }					t_info;
 
-struct s_info	*ft_sort_struc_rev(t_info *p);
-struct s_info	*ft_opendir(char *str);
-struct s_info	*ft_sort_struc_ascii(t_info *p);
-struct s_info	*ft_inspect_file(char *str);
-struct s_info	*ft_sort_hub(t_info *p, int *tab);
-int				ft_free_struc(t_info *p);
-int				ft_menu(int argc, char **argv);
-int				ft_puttime(char *str, size_t  b);
-int				ft_option(t_info *p, char *str, int tab[]);
-int				ft_recursive(t_info *p, char *str, int tab[]);
-int				ft_start_option(char **argv, int tab[]);
-int				ft_nb_argv_is_two(char **argv);
-int				ft_prints(t_info *p, int a);
-int				ft_print_l(t_info *p, int a);
-char			**ft_open_not_dir(char **argv, int tab[]);
-int				ft_is_not_a_dir(char *str);
-int				ft_security_input(int argc, char **argv);
-int				ft_print_hub(t_info *p, int a, int l);
-char			*ft_naming(char *s1, char *s2);
-char			*ft_strmode(int mode, char *str, char *init);
-void			ft_swap(t_info *a, t_info *b);
-void			ft_default(int argc, char **argv);
-void			not_dir_option(char *str, int tab[]);
-void			ft_free_tab(char **argv);
+struct s_info		*ft_sort_struc_rev(t_info *p);
+struct s_info		*ft_opendir(char *str);
+struct s_info		*ft_sort_struc_ascii(t_info *p);
+struct s_info		*ft_inspect_file(char *str);
+struct s_info		*ft_sort_hub(t_info *p, int *tab);
+
+int					ft_free_struc(t_info *p);
+int					ft_print_error(char *str);
+int					ft_menu(int argc, char **argv);
+int					ft_puttime(char *str, size_t b);
+int					ft_option(t_info *p, char *str, int tab[]);
+int					ft_recursive(t_info *p, char *str, int tab[]);
+int					ft_start_option(char **argv, int tab[]);
+int					ft_nb_argv_is_two(char **argv);
+int					ft_prints(t_info *p, int a);
+int					ft_print_l(t_info *p, int a, int r);
+char				**ft_open_not_dir(char **argv, int tab[]);
+int					ft_is_not_a_dir(char *str);
+int					ft_security_input(int argc, char **argv);
+int					ft_print_hub(t_info *p, int a, int l, int r);
+char				*ft_naming(char *s1, char *s2);
+char				*ft_strmode(int mode, char *str);
+void				ft_swap(t_info *a, t_info *b);
+void				ft_default(int argc, char **argv);
+void				ft_free_tab(char **argv);
+void				ft_paddind_total_print(int a, int block);
+void				ft_space(int a, int b);
 
 #endif

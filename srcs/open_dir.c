@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:37:09 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 23:19:38 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/13 00:13:44 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char			*ft_naming(char *s1, char *s2)
 	return (str);
 }
 
-t_info	*ft_auto_open_dir(DIR *dirp, struct dirent *direntp, char *str)
+t_info			*ft_auto_open_dir(DIR *dirp, struct dirent *direntp, char *str)
 {
 	char	*t;
 	t_info	*p;
