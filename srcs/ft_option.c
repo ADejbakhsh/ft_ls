@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 23:47:08 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/14 17:55:51 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ static void	ft_open_default(char *str, int tab[])
 	ft_option(p, str, tab);
 }
 
+static int	ft_sort_argv_with_option(char **argv, int tab[])
+{
+	if (tab[0] == 1 && tab[2] == 1)
+		return (ft_argv_time_reverse(argv));
+	if (tab[0] == 1)
+		return (ft_argv_time(argv));
+	if (tab[2] == 1)
+		ft_sort_rev_argv(argv);
+	if (tab[2] == 0)
+		ft_sort_argv(argv);
+	return (0);
+}
+
 int			ft_start_option(char **argv, int tab[])
 {
 	int		a;
@@ -34,7 +47,7 @@ int			ft_start_option(char **argv, int tab[])
 		ft_open_default(".", tab);
 		return (1);
 	}
-	ft_sort_argv(argv);
+	ft_sort_argv_with_option(argv, tab);
 	ft_open_not_dir(argv, tab);
 	c = ft_nb_argv_is_two(argv);
 	while (argv[++a])

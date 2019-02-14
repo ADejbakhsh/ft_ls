@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 23:53:46 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/14 18:03:52 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <dirent.h>
 # include "../libft/includes/libft.h"
 # include <time.h>
-# include <sys/xattr.h>
 # include <grp.h>
 # define DAY 86400
 # define HOUR 3600
@@ -52,6 +51,8 @@ struct s_info		*ft_inspect_file(char *str);
 struct s_info		*ft_sort_hub(t_info *p, int *tab);
 
 int					ft_free_struc(t_info *p);
+int					ft_argv_time_reverse(char **argv);
+int					ft_argv_time(char **argv);
 int					ft_print_error(char *str);
 int					ft_menu(int argc, char **argv);
 int					ft_puttime(char *str, size_t b);

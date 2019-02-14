@@ -6,7 +6,7 @@
 #    By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 17:00:04 by adejbakh          #+#    #+#              #
-#    Updated: 2019/02/09 17:00:19 by adejbakh         ###   ########.fr        #
+#    Updated: 2019/02/14 18:02:09 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ FUNC = ft_menu.c \
     main.c\
     open_dir.c\
     not_a_dir.c\
+    ft_print_l_tools.c\
+    sort_argv_time.c\
 
 SRC_DIR = ./srcs/
 
@@ -34,7 +36,7 @@ NAME = ft_ls
 
 INCLUDES = ./includes/
 
-CFLAG = -Wall -Wextra -Werror -g
+CFLAG = -Wall -Wextra -Werror
 
 CC = gcc
 
