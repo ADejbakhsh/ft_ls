@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:12:25 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 16:20:10 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 17:13:01 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ struct s_info	*ft_sort_struc_time_rev(t_info *p)
 	t_info	*s;
 	t_info	*r;
 
+	p = ft_sort_struc_time(p);
 	r = p;
 	p = p->next;
 	r->next = NULL;
