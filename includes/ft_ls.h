@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/14 18:03:52 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 11:11:06 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef	struct		s_info
 	char			*size;
 	char			*owner;
 	char			*group;
+	char			*usr_id;
 	char			*nbl;
 	char			*link;
 	char			*major;

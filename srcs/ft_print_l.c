@@ -6,16 +6,33 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 23:59:34 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 12:06:56 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+static void	padding_lenght(t_info *s, int pad[])
+{
+	int	tmp;
+
+	if ((tmp = ft_strlen(s->nbl)) > pad[0])
+		pad[0] = tmp;
+	if (s->owner && ((tmp = ft_strlen(s->owner)) > pad[1]))
+		pad[1] = tmp;
+	if ((tmp = ft_strlen(s->size)) > pad[2])
+		pad[2] = tmp;
+	if ((tmp = ft_strlen(s->major)) > pad[3])
+		pad[3] = tmp;
+	if ((tmp = ft_strlen(s->minor)) > pad[4])
+		pad[4] = tmp;
+	if ((s->group && ((tmp = ft_strlen(s->group))) > pad[5]))
+		pad[5] = tmp;
+}
+
 static void	ft_padding(t_info *p, int pad[], int a)
 {
 	t_info	*s;
-	int		tmp;
 	int		block;
 
 	s = p;
@@ -23,18 +40,7 @@ static void	ft_padding(t_info *p, int pad[], int a)
 	ft_int_tab(pad, 6);
 	while (s)
 	{
-		if ((tmp = ft_strlen(s->nbl)) > pad[0])
-			pad[0] = tmp;
-		if ((tmp = ft_strlen(s->owner)) > pad[1])
-			pad[1] = tmp;
-		if ((tmp = ft_strlen(s->size)) > pad[2])
-			pad[2] = tmp;
-		if ((tmp = ft_strlen(s->major)) > pad[3])
-			pad[3] = tmp;
-		if ((tmp = ft_strlen(s->minor)) > pad[4])
-			pad[4] = tmp;
-		if ((s->group && (tmp = ft_strlen(s->group))) > pad[5])
-			pad[5] = tmp;
+		padding_lenght(s, pad);
 		block += s->block;
 		s = s->next;
 	}
@@ -68,8 +74,16 @@ static void	ft_print_basic(t_info *p, int pad[])
 	ft_putin(2, p->mode, " ");
 	ft_space(ft_strlen(p->nbl), pad[0]);
 	ft_putin(2, p->nbl, " ");
-	ft_putstr(p->owner);
-	ft_space(ft_strlen(p->owner), pad[1]);
+	if (p->owner)
+	{
+		ft_putstr(p->owner);
+		ft_space(ft_strlen(p->owner), pad[1]);
+	}
+	else
+	{
+		ft_putstr(p->usr_id);
+		ft_space(ft_strlen(p->usr_id), pad[1]);
+	}
 	if (p->group)
 	{
 		ft_putin(2, "  ", p->group);

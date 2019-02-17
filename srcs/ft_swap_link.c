@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:10:55 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 23:46:35 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 13:35:17 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static void		ft_swap_more(t_info *a, t_info *b)
 	s = a->nano;
 	a->nano = b->nano;
 	b->nano = s;
+	tmp = a->usr_id;
+	a->usr_id = b->usr_id;
+	b->usr_id = tmp;
 }
 
 void			ft_swap(t_info *a, t_info *b)

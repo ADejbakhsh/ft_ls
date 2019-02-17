@@ -6,21 +6,24 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/14 17:55:51 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 16:23:01 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	ft_open_default(char *str, int tab[])
+static int	ft_open_default(char *str, int tab[])
 {
 	t_info *p;
 
 	p = ft_opendir(str);
 	if (p == NULL)
-		return ;
+		return (-1);
 	p = ft_sort_hub(p, tab);
 	ft_option(p, str, tab);
+	if (tab[3] == 1 && tab[4] == 0)
+			write(1, "\n", 1);
+	return (1);
 }
 
 static int	ft_sort_argv_with_option(char **argv, int tab[])
@@ -43,10 +46,7 @@ int			ft_start_option(char **argv, int tab[])
 
 	a = -1;
 	if (!argv)
-	{
-		ft_open_default(".", tab);
-		return (1);
-	}
+		return (ft_open_default(".", tab));
 	ft_sort_argv_with_option(argv, tab);
 	ft_open_not_dir(argv, tab);
 	c = ft_nb_argv_is_two(argv);

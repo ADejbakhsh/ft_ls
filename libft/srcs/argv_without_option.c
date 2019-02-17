@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 17:42:40 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 19:16:03 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 10:07:56 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@ char	**argv_without_option(int argc, char **argv)
 
 	i = 1;
 	while (argv[i] && argv[i][0] == '-')
+	{
+		if (argv[i][0] == '-' && argv[i][1] == '-' && argv[i][2] == '\0')
+		{
+			i++;
+			break ;
+		}
 		i++;
+	}
 	if (!(argv[i]))
 		return (NULL);
 	return (argv_to_tab(argc, argv, i));

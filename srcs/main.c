@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:32:06 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/13 00:12:35 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 10:26:32 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,14 @@ int		ft_security_input(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	while (argv[i] && argv[i][0] == '-' && ft_strlen(argv[i]) > 1)
+	{
+		if (argv[i][0] == '-' && argv[i][1] == '-' && argv[i][2] == '\0')
+		{
+			i++;
+			break ;
+		}
 		i++;
+	}
 	if (!argv[i])
 		return (-1);
 	while (argv[a])

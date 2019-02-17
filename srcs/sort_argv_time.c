@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 16:38:07 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/14 17:53:56 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 16:28:36 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_argv_time(char **argv)
 		q = ft_inspect_file(argv[i + 1]);
 		if (p && q)
 		{
-			if (p->nano > q->nano)
+			if (p->nano < q->nano)
 			{
 				tmp = argv[i];
 				argv[i] = argv[i + 1];
@@ -55,7 +55,7 @@ int		ft_argv_time_reverse(char **argv)
 		q = ft_inspect_file(argv[i + 1]);
 		if (p && q)
 		{
-			if (p->nano < q->nano)
+			if (p->nano > q->nano)
 			{
 				tmp = argv[i];
 				argv[i] = argv[i + 1];

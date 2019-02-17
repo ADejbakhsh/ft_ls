@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/13 00:10:17 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/17 11:18:18 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static struct s_info	*ft_sec_stat(t_info **p, struct stat buf)
 	if (!((*p)->nbl = ft_itoa(buf.st_nlink)))
 		return (NULL);
 	(*p)->next = NULL;
+	(*p)->block = buf.st_blocks;
+	(*p)->usr_id = ft_itoa(buf.st_uid);
 	return (*p);
 }
 
@@ -88,7 +90,6 @@ struct s_info			*ft_inspect_file(char *str)
 	if (!(p->link = ft_strnew(400)))
 		return (NULL);
 	readlink(str, p->link, 400);
-	p->block = buf.st_blocks;
 	return (p);
 }
 
@@ -105,6 +106,7 @@ int						ft_free_struc(t_info *p)
 	free(p->major);
 	free(p->minor);
 	free(p->name);
+	free(p->usr_id);
 	free(p);
 	return (0);
 }
