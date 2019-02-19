@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 08:35:20 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/14 20:21:16 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/18 18:27:13 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <string.h>
-# include <stdarg.h>
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 void				ft_putin(int fmt, ...);
 char				**argv_without_option(int argc, char **argv);

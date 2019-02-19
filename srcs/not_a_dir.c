@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:13:32 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/14 17:48:51 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:14:02 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**ft_open_not_dir(char **argv, int tab[])
 	{
 		p = ft_inspect_file(argv[i]);
 		if (p && (p->mode[0] == 'd' || (p->mode[0] == 'l'
-			&& (argv[i][ft_strlen(argv[i])] == '/' || tab[4] == 1))))
+			&& (argv[i][ft_strlen(argv[i])] == '/'))))
 			ft_free_struc(p);
 		else
 		{
