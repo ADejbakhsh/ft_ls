@@ -6,11 +6,9 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 13:19:52 by adejbakh          #+#    #+#             */
-/*   Updated: 2018/11/29 14:24:56 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:38:46 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../includes/libft.h"
 
 int				ft_atoi(const char *nptr)
 {

@@ -6,11 +6,10 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:31:52 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/14 16:22:13 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 12:55:43 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 void		ft_putin(int fmt, ...)

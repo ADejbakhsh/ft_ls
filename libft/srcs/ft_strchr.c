@@ -6,11 +6,9 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 09:36:37 by adejbakh          #+#    #+#             */
-/*   Updated: 2018/11/23 15:23:39 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 12:51:20 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

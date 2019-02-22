@@ -6,11 +6,11 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 12:23:13 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/24 12:58:12 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:40:49 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 int	ft_int_tab(int tab[], int size)
 {

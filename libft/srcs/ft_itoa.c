@@ -6,11 +6,11 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:26:17 by adejbakh          #+#    #+#             */
-/*   Updated: 2018/11/14 18:03:10 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 12:49:54 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 static	size_t	ft_size_int(int n)
 {

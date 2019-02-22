@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 12:06:56 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:27:30 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	ft_padding(t_info *p, int pad[], int a)
 
 static int	ft_device(t_info *p, int pad[])
 {
-	write(1, "  ", 2);
+	write(1, "  ", 1);
 	if (pad[3] != 1 && pad[4] != 1)
 	{
 		ft_space(ft_strlen(p->major), pad[3]);
@@ -91,7 +91,7 @@ static void	ft_print_basic(t_info *p, int pad[])
 	}
 }
 
-int			ft_print_l(t_info *p, int a, int r)
+int			ft_print_l(t_info *p, int a)
 {
 	int	pad[6];
 
@@ -111,7 +111,7 @@ int			ft_print_l(t_info *p, int a, int r)
 			write(1, "\n", 1);
 		p = p->next;
 	}
-	if (a == -1 || r == 1)
+	if (a == -1)
 		write(1, "\n", 1);
 	return (0);
 }

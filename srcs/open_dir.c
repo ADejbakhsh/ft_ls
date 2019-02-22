@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:37:09 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 10:59:51 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/19 15:42:39 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ struct s_info	*ft_opendir(char *str)
 	if (dirp == NULL)
 		return (NULL);
 	direntp = readdir(dirp);
+	if (!direntp)
+		return (NULL);
 	return (ft_auto_open_dir(dirp, direntp, str));
 }

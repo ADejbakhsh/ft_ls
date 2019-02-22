@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 11:14:55 by adejbakh          #+#    #+#             */
-/*   Updated: 2018/11/29 11:15:39 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 12:35:44 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@ int	ft_strcspn(char const *s, char const *charset)
 {
 	unsigned int i;
 
-	i = 0;
 	if (s && charset)
 		while (*charset)
 		{

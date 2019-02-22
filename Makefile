@@ -6,7 +6,7 @@
 #    By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 17:00:04 by adejbakh          #+#    #+#              #
-#    Updated: 2019/02/14 18:02:09 by adejbakh         ###   ########.fr        #
+#    Updated: 2019/02/21 11:36:37 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,15 +44,16 @@ LIB =  -L. ./libft/libft.a
 
 .PHONY: clean all fclean re
 
+all: $(NAME)
+
 $(NAME) : $(SRC) Makefile libft/srcs
 	@$(CC) $(CFLAG) -I$(INCLUDES) -c $(SRC)
 	@make -C ./libft/
 	@$(CC) -o $(NAME) $(OBJS) $(LIB)
 	@echo "$(NAME) has been made"
 
-all: $(NAME)
 
-clean : 
+clean :
 	@rm -f $(OBJS)
 	@make -C ./libft/ clean
 	@echo "Objects deleted"

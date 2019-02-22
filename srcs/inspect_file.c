@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 11:18:18 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:18:38 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ static struct s_info	*ft_sec_stat(t_info **p, struct stat buf)
 	(*p)->nano = buf.st_mtime;
 	if (ft_puttime(ft_strdup(ctime(&buf.st_mtime)), time(0)) == 1)
 		if (!((*p)->time = ft_time_strsub((*p)->time)))
-			return (NULL);
+			return (ft_free_struc(*p));
 	if (ft_puttime(ft_strdup(ctime(&buf.st_mtime)), time(0)) == 0)
 		if (!((*p)->time = ft_strsub((*p)->time, 4, 12)))
-			return (NULL);
+			return (ft_free_struc(*p));
 	if (!((*p)->size = ft_itoa(buf.st_size)))
-		return (NULL);
+		return (ft_free_struc(*p));
 	if (!((*p)->minor = ft_itoa(buf.st_rdev & 0xFF)))
-		return (NULL);
+		return (ft_free_struc(*p));
 	if (!((*p)->major = ft_itoa(major(buf.st_rdev))))
-		return (NULL);
+		return (ft_free_struc(*p));
 	if (!((*p)->nbl = ft_itoa(buf.st_nlink)))
-		return (NULL);
+		return (ft_free_struc(*p));
 	(*p)->next = NULL;
 	(*p)->block = buf.st_blocks;
 	(*p)->usr_id = ft_itoa(buf.st_uid);
@@ -75,10 +75,10 @@ struct s_info			*ft_inspect_file(char *str)
 	if (lstat(str, &buf) == -1 || !(p = (t_info*)malloc(sizeof(*p))))
 		return (NULL);
 	if (!(p->mode = ft_strnew(11)))
-		return (NULL);
+		return (ft_free_struc(p));
 	p->mode = ft_strmode(buf.st_mode, p->mode);
 	if (!(p = ft_sec_stat(&p, buf)))
-		return (NULL);
+		return (ft_free_struc(p));
 	pwd = getpwuid(buf.st_uid);
 	if (pwd)
 		p->owner = pwd->pw_name;
@@ -88,25 +88,34 @@ struct s_info			*ft_inspect_file(char *str)
 		p->group = NULL;
 	p->name = ft_cut_before_last_cara(str, '/');
 	if (!(p->link = ft_strnew(400)))
-		return (NULL);
+		return (ft_free_struc(p));
 	readlink(str, p->link, 400);
 	return (p);
 }
 
-int						ft_free_struc(t_info *p)
+t_info					*ft_free_struc(t_info *p)
 {
 	if (p == NULL)
-		return (0);
+		return (p);
 	ft_free_struc(p->next);
-	free(p->nbl);
-	free(p->mode);
-	free(p->size);
-	free(p->time);
-	free(p->link);
-	free(p->major);
-	free(p->minor);
-	free(p->name);
-	free(p->usr_id);
+	if (p->nbl)
+		free(p->nbl);
+	if (p->mode)
+		free(p->mode);
+	if (p->size)
+		free(p->size);
+	if (p->time)
+		free(p->time);
+	if (p->link)
+		free(p->link);
+	if (p->major)
+		free(p->major);
+	if (p->minor)
+		free(p->minor);
+	if (p->name)
+		free(p->name);
+	if (p->usr_id)
+		free(p->usr_id);
 	free(p);
-	return (0);
+	return (NULL);
 }

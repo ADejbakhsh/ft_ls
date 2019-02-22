@@ -6,13 +6,30 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 17:41:27 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/09 17:57:42 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:05:05 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**argv_to_tab(int argc, char **argv, int skip)
+static char	**free_n_avg(char **n_avg)
+{
+	int	a;
+
+	if (!n_avg)
+		return (NULL);
+	a = 0;
+	while (n_avg[a])
+	{
+		free(n_avg[a]);
+		++a;
+	}
+	free(n_avg);
+	n_avg = NULL;
+	return (NULL);
+}
+
+char		**argv_to_tab(int argc, char **argv, int skip)
 {
 	char	**n_avg;
 	int		size;
@@ -27,10 +44,10 @@ char	**argv_to_tab(int argc, char **argv, int skip)
 	{
 		n_avg[i] = (char*)malloc(sizeof(**n_avg) * ft_strlen(argv[skip]) + 1);
 		if (!(n_avg[i]))
-			return (NULL);
+			return (free_n_avg(n_avg));
 		n_avg[i] = ft_strcpy(n_avg[i], argv[skip]);
-		skip++;
-		i++;
+		++skip;
+		++i;
 	}
 	n_avg[i] = 0;
 	return (n_avg);

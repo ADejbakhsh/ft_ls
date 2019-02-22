@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 11:11:06 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:18:21 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct s_info		*ft_sort_struc_ascii(t_info *p);
 struct s_info		*ft_inspect_file(char *str);
 struct s_info		*ft_sort_hub(t_info *p, int *tab);
 
-int					ft_free_struc(t_info *p);
+t_info				*ft_free_struc(t_info *p);
 int					ft_argv_time_reverse(char **argv);
 int					ft_argv_time(char **argv);
 int					ft_print_error(char *str);
@@ -62,7 +62,7 @@ int					ft_recursive(t_info *p, char *str, int tab[]);
 int					ft_start_option(char **argv, int tab[]);
 int					ft_nb_argv_is_two(char **argv);
 int					ft_prints(t_info *p, int a);
-int					ft_print_l(t_info *p, int a, int r);
+int					ft_print_l(t_info *p, int a);
 char				**ft_open_not_dir(char **argv, int tab[]);
 int					ft_is_not_a_dir(char *str);
 int					ft_security_input(int argc, char **argv);

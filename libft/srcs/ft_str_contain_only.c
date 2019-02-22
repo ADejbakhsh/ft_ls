@@ -6,17 +6,15 @@
 /*   By: ccommiss <ccommiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 09:48:00 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/01/24 12:49:55 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:31:55 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_str_contain_only(char *str, char *s2)
 {
-	size_t	a;
-	size_t	b;
-	size_t	c;
+	int	a;
+	int	b;
+	int	c;
 
 	a = 0;
 	while (str[a])
