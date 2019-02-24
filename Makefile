@@ -6,7 +6,7 @@
 #    By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 17:00:04 by adejbakh          #+#    #+#              #
-#    Updated: 2019/02/21 11:36:37 by adejbakh         ###   ########.fr        #
+#    Updated: 2019/02/22 19:47:22 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,12 @@ $(NAME) : $(SRC) Makefile libft/srcs
 	@$(CC) -o $(NAME) $(OBJS) $(LIB)
 	@echo "$(NAME) has been made"
 
+
+force : $(SRC) Makefile libft/srcs
+	@$(CC) -I$(INCLUDES) -c $(SRC)
+	@make -C ./libft/
+	@$(CC) -o $(NAME) $(OBJS) $(LIB)
+	@echo "$(NAME) has been made"
 
 clean :
 	@rm -f $(OBJS)

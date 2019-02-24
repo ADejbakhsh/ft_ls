@@ -6,10 +6,10 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:02:35 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/12 23:47:36 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:50:25 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "ft_ls.h"
 
 int			ft_nb_argv_is_two(char **argv)
@@ -69,4 +69,4 @@ int			ft_recursive(t_info *p, char *str, int tab[])
 		p = p->next;
 	}
 	return (0);
-}
+}*/

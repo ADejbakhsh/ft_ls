@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/22 18:27:30 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:51:20 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ static void	ft_print_basic(t_info *p, int pad[])
 
 int			ft_print_l(t_info *p, int a)
 {
+	t_info	*s;
 	int	pad[6];
 
+	s = p;
 	ft_padding(p, pad, a);
 	while (p)
 	{
@@ -111,7 +113,7 @@ int			ft_print_l(t_info *p, int a)
 			write(1, "\n", 1);
 		p = p->next;
 	}
-	if (a == -1)
-		write(1, "\n", 1);
+	write(1, "\n", 1);
+	ft_free_struc(s);
 	return (0);
 }

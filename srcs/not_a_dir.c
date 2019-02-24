@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:13:32 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/19 15:56:13 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:07:27 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	**ft_open_not_dir(char **argv, int tab[])
 	t_info	*p;
 	int		i;
 
+	if (tab)
+		;
 	i = 0;
 	while (argv[i])
 	{
@@ -37,7 +39,10 @@ char	**ft_open_not_dir(char **argv, int tab[])
 		else
 		{
 			argv[i][0] = 4;
-			ft_print_hub(p, -1, tab[3], tab[4]);
+			if (tab[3] == 1)
+				ft_print_l(p, -1);
+			else
+				ft_putendl(p->name);
 			ft_free_struc(p);
 		}
 		i++;

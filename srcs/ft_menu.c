@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/22 18:18:37 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/22 22:13:48 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,14 @@ static void	ft_tab_option_filler(int tab[], char *str)
 	tab[4] = (ft_strchr(str, 'R') != 0) ? 1 : tab[4];
 }
 
-int			ft_menu(int argc, char **argv)
+void	ft_flag(char *str, int tab[])
 {
-	char	**n_avg;
-	int		tab[5];
-	int		a;
-
-	ft_int_tab(tab, 5);
-	a = 1;
-	while (argv[a] && argv[a][0] == '-')
+	if (ft_str_contain_only((str + 1), "lratR") == 0)
 	{
-		if (argv[a][0] == '-' && argv[a][1] == '-' && argv[a][2] == '\0')
-			break ;
-		if (ft_str_contain_only((argv[a] + 1), "lratR") == 0)
-		{
-			ft_putstr("ls : illegal option -- ");
-			ft_putchar(ft_dif(argv[a], "lratR"));
-			ft_putendl("\nusage : ls [-lratR] [file ...]");
-			return (1);
-		}
-		ft_tab_option_filler(tab, argv[a]);
-		++a;
+		ft_putstr("ls : illegal option -- ");
+		ft_putchar(ft_dif(str, "lratR"));
+		ft_putendl("\nusage : ls [-lratR] [file ...]");
+		exit (0);
 	}
-	if (!(n_avg = argv_without_option(argc, argv)))
-			return (-1);
-	return (ft_start_option(n_avg, tab));
+	ft_tab_option_filler(tab, str);
 }

@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:12:25 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/17 17:13:01 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/24 17:56:00 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ struct s_info	*ft_sort_struc_time(t_info *p)
 	return (p);
 }
 
-struct s_info	*ft_sort_struc_time_rev(t_info *p)
+t_info			*ft_rev_struct(t_info* p)
 {
 	t_info	*s;
 	t_info	*r;
 
-	p = ft_sort_struc_time(p);
+	ft_print_base(p, 1);
+	while (1);
 	r = p;
 	p = p->next;
 	r->next = NULL;
@@ -103,7 +104,7 @@ struct s_info	*ft_sort_struc_time_rev(t_info *p)
 struct s_info	*ft_sort_hub(t_info *p, int tab[])
 {
 	if (tab[2] == 1 && tab[0] == 1)
-		return (ft_sort_struc_time_rev(p));
+		return (ft_rev_struct(ft_sort_struc_time(p)));
 	if (tab[0] == 1)
 		return (ft_sort_struc_time(p));
 	if (tab[2] == 1)
