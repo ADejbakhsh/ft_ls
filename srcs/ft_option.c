@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:06:24 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/24 17:53:26 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:04:33 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_print_option(char *str, int tab[])
 
 	if (!(p = ft_opendir(str)))
 		return (0);
-	ft_sort_hub(p, tab);
+	p = ft_sort_hub(p, tab);
 	s = p;
 	if (str[0] == 4)
 		return (0);/*

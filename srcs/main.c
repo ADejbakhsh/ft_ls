@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:32:06 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/24 17:10:22 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 16:46:27 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_print_base(t_info *p, int a)
 	t_info	*s;
 
 	s = p;
+	ft_sort_struc_ascii(p);
 	while (p)
 	{
 		while (p && p->name[0] == '.' && a == 0)

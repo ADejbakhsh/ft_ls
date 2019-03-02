@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/24 17:48:14 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 14:57:21 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int					ft_is_not_a_dir(char *str);
 int					ft_security_input(int argc, char **argv, int tab[]);
 char				*ft_naming(char *s1, char *s2);
 char				*ft_strmode(int mode, char *str);
-void				ft_swap(t_info *a, t_info *b);
+void				ft_swap(t_info **head, t_info *curr);
 void				ft_default(int argc, char **argv);
 void				ft_free_tab(char **argv);
 void				ft_paddind_total_print(int a, int block);
