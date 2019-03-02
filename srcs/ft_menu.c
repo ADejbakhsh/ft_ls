@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:50:38 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/22 22:13:48 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:26:55 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static void	ft_tab_option_filler(int tab[], char *str)
 	tab[4] = (ft_strchr(str, 'R') != 0) ? 1 : tab[4];
 }
 
-void	ft_flag(char *str, int tab[])
+void		ft_flag(char *str, int tab[])
 {
 	if (ft_str_contain_only((str + 1), "lratR") == 0)
 	{
 		ft_putstr("ls : illegal option -- ");
 		ft_putchar(ft_dif(str, "lratR"));
 		ft_putendl("\nusage : ls [-lratR] [file ...]");
-		exit (0);
+		exit(0);
 	}
 	ft_tab_option_filler(tab, str);
 }

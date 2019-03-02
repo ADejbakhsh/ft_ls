@@ -6,11 +6,20 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:10:55 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/02 16:44:52 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:55:05 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static void	ft_swap_lbase(t_info *tmp_head, t_info *curr)
+{
+	while (tmp_head->next != curr)
+		tmp_head = tmp_head->next;
+	tmp_head->next = curr->next;
+	curr->next = curr->next->next;
+	tmp_head->next->next = curr;
+}
 
 void	ft_swap(t_info **head, t_info *curr)
 {
@@ -34,11 +43,5 @@ void	ft_swap(t_info **head, t_info *curr)
 		curr->next = NULL;
 	}
 	else
-	{
-		while (tmp_head->next != curr)
-			tmp_head = tmp_head->next;
-		tmp_head->next = curr->next;
-		curr->next = curr->next->next;
-		tmp_head->next->next = curr;
-	}
+		ft_swap_lbase(tmp_head, curr);
 }

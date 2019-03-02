@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/24 16:16:35 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:07:37 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static struct s_info	*ft_sec_stat(t_info **p, struct stat buf)
 {
 	(*p)->time = ctime(&buf.st_mtime);
 	(*p)->nano = buf.st_mtime;
-	if (ft_puttime(ft_strdup(ctime(&buf.st_mtime)), time(0)) == 1)
+	if ((buf.st_mtime) > time(0) || (time(0) - buf.st_mtime) >= 15778458)
 		if (!((*p)->time = ft_time_strsub((*p)->time)))
 			return (ft_free_struc(*p));
-	if (ft_puttime(ft_strdup(ctime(&buf.st_mtime)), time(0)) == 0)
+	if (buf.st_mtime <= time(0) && (time(0) - buf.st_mtime) < 15778458)
 		if (!((*p)->time = ft_strsub((*p)->time, 4, 12)))
 			return (ft_free_struc(*p));
 	if (!((*p)->size = ft_itoa(buf.st_size)))
@@ -81,7 +81,7 @@ struct s_info			*ft_inspect_file(char *str)
 		return (ft_free_struc(p));
 	pwd = getpwuid(buf.st_uid);
 	if (pwd)
-		p->owner = pwd->pw_name;
+		p->owner = ft_strdup(pwd->pw_name);
 	if ((grp = getgrgid(buf.st_gid)))
 		p->group = grp->gr_name;
 	else
@@ -116,6 +116,8 @@ t_info					*ft_free_struc(t_info *p)
 		free(p->name);
 	if (p->usr_id)
 		free(p->usr_id);
+	if (p->owner)
+		free(p->owner);
 	free(p);
 	return (NULL);
 }

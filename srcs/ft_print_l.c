@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 11:07:23 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/24 19:22:02 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:47:18 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ static void	ft_print_basic(t_info *p, int pad[])
 	}
 }
 
-int			ft_print_l(t_info *p, int a)
+int			ft_print_l(t_info *p, int a, int r)
 {
 	t_info	*s;
-	int	pad[6];
+	int		pad[6];
 
 	s = p;
 	ft_padding(p, pad, a);
@@ -109,11 +109,12 @@ int			ft_print_l(t_info *p, int a)
 		ft_putin(3, p->time, " ", p->name);
 		if (p->link[0] != '\0')
 			ft_putin(2, " -> ", p->link);
-		if (p->next && ((a == 1) || (p->next->name[0] != '.' && a == 0 )))
+		if (p->next && ((a == 1) || (p->next->name[0] != '.' && a == 0)))
 			write(1, "\n", 1);
 		p = p->next;
 	}
 	write(1, "\n", 1);
-	ft_free_struc(s);
+	if (r == 0)
+		ft_free_struc(s);
 	return (0);
 }

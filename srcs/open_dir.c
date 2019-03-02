@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:37:09 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/02/19 15:42:39 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 21:45:43 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,17 @@ char			*ft_naming(char *s1, char *s2)
 	char	*str;
 
 	b = 0;
-	a = 0;
 	if (s2 == NULL)
 		return (NULL);
-	if (s1 != NULL)
-		a = ft_strlen(s1);
+	a = ft_strlen(s1);
 	a += ft_strlen(s2);
 	if (!(str = (char*)malloc(sizeof(*str) * a + 2)))
 		return (NULL);
 	a = 0;
-	if (s1 != NULL)
-		while (s1[a])
-			str[a++] = s1[b++];
+	while (s1[a])
+		str[a++] = s1[b++];
 	b = 0;
-	if (str[a - 1] != '/')
+	if (a >= 1 && str[a - 1] != '/')
 		str[a++] = '/';
 	while (s2[b])
 		str[a++] = s2[b++];

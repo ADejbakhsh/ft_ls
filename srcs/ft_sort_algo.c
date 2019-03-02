@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:12:25 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/02 16:08:13 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/02 23:05:38 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ struct s_info	*ft_sort_struc_time(t_info *head)
 				ft_swap(&head, s);
 				b = 1;
 			}
-			if (s &&  s->next && (s->nano == s->next->nano))
+			if (s && s->next && (s->nano == s->next->nano))
 				if (ft_strcmp(s->name, s->next->name) > 0)
 					ft_swap(&head, s);
 			s = s->next;
@@ -62,11 +62,12 @@ struct s_info	*ft_sort_struc_time(t_info *head)
 	return (head);
 }
 
-t_info			*ft_rev_struct(t_info* p)
+t_info			*ft_rev_struct(t_info *p)
 {
 	t_info	*s;
 	t_info	*r;
 
+	s = NULL;
 	r = p;
 	p = p->next;
 	r->next = NULL;
