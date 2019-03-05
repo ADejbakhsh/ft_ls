@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:36:53 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:21 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/05 12:15:19 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@
 # include "../libft/includes/libft.h"
 # include <time.h>
 # include <grp.h>
-# define DAY 86400
-# define HOUR 3600
-# define MIN 60
-# define YEAR 31556926
-# define MONTH 2629743
 
 typedef	struct		s_info
 {
@@ -52,7 +47,8 @@ struct s_info		*ft_inspect_file(char *str);
 struct s_info		*ft_sort_hub(t_info *p, int *tab);
 
 t_info				*ft_free_struc(t_info *p);
-t_info				*ft_rev_struct(t_info* p);
+t_info				*ft_rev_struct(t_info *p);
+int					ft_print_option(char *str, int tab[]);
 int					ft_print_base(t_info *p, int a);
 int					ft_print_all(char **n_avg, int tab[]);
 int					ft_argv_time_reverse(char **argv);
@@ -63,7 +59,7 @@ int					ft_puttime(char *str, size_t b);
 int					ft_recursive(t_info *p, char *str, int tab[]);
 int					ft_start_option(char **argv, int tab[]);
 int					ft_nb_argv_is_two(char **argv);
-int					ft_print_l(t_info *p, int a);
+int					ft_print_l(t_info *p, int a, int r);
 char				**ft_open_not_dir(char **argv, int tab[]);
 int					ft_is_not_a_dir(char *str);
 int					ft_security_input(int argc, char **argv, int tab[]);

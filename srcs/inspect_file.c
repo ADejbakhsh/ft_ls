@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:24:47 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/02 22:07:37 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/05 12:08:09 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ struct s_info			*ft_inspect_file(char *str)
 	if (!(p = ft_sec_stat(&p, buf)))
 		return (ft_free_struc(p));
 	pwd = getpwuid(buf.st_uid);
+	p->owner = NULL;
 	if (pwd)
 		p->owner = ft_strdup(pwd->pw_name);
 	if ((grp = getgrgid(buf.st_gid)))
@@ -95,9 +96,8 @@ struct s_info			*ft_inspect_file(char *str)
 
 t_info					*ft_free_struc(t_info *p)
 {
-	if (p == NULL)
-		return (p);
-	ft_free_struc(p->next);
+	if (p->next != NULL)
+		ft_free_struc(p->next);
 	if (p->nbl)
 		free(p->nbl);
 	if (p->mode)

@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:13:32 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/03 00:15:50 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/05 12:11:21 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		ft_is_not_a_dir(char *str)
 
 void	ft_open_not_dir_if_not_dir(char **argv, int i, int tab[], t_info *p)
 {
-	if((p->mode[0] == 'd' || p->mode[0] == 'l') && tab[3] == 0)
+	if ((p->mode[0] == 'd' || p->mode[0] == 'l') && tab[3] == 0)
 	{
-		ft_print_base(ft_sort_hub(p, tab), tab[1]);
+		ft_free_struc(p);
 		return ;
 	}
 	argv[i][0] = 4;

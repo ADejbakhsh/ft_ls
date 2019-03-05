@@ -7,7 +7,6 @@ sleep 1
 ./ft_ls
 echo "${GRE}/\/\/\/\/\/\/\/\/\/\/\/\/\ ${NC}"
 ls -1
-
 echo "${GRE} End of Test\n${NC}"
 
 read -n 1 -s -r -p "Press any key to continue"
@@ -66,7 +65,7 @@ clear
 echo "${GRE} Test 7 : ls -R \n${NC}"
 sleep 1
 
-./ft_ls -R
+./ft_ls -tR
 echo "${GRE}/\/\/\/\/\/\/\/\/\/\/\/\/\ ${NC}"
 ls -tR1
 echo "${GRE} End of Test\n${NC}"

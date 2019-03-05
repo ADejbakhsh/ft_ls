@@ -6,7 +6,7 @@
 #    By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 17:00:04 by adejbakh          #+#    #+#              #
-#    Updated: 2019/02/22 19:47:22 by adejbakh         ###   ########.fr        #
+#    Updated: 2019/03/02 21:12:57 by adejbakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ FUNC = ft_menu.c \
     ft_sort_algo.c\
     ft_strmode.c\
     ft_swap_link.c\
-    ft_time.c\
     inspect_file.c\
     main.c\
     open_dir.c\

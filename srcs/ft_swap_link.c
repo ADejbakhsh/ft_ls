@@ -6,7 +6,7 @@
 /*   By: adejbakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 16:10:55 by adejbakh          #+#    #+#             */
-/*   Updated: 2019/03/02 22:55:05 by adejbakh         ###   ########.fr       */
+/*   Updated: 2019/03/05 12:11:40 by adejbakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_swap_lbase(t_info *tmp_head, t_info *curr)
 	tmp_head->next->next = curr;
 }
 
-void	ft_swap(t_info **head, t_info *curr)
+void		ft_swap(t_info **head, t_info *curr)
 {
 	t_info	*tmp_head;
 	t_info	*tmp;
